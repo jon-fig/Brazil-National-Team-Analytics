@@ -46,14 +46,14 @@ Below are the primary SQL queries powering the dashboard components in Metabase.
 
 1. Headline KPIs (Total Matches & Total Wins)
 
--- KPI: Total Matches Played
+
 SELECT
     COUNT(DISTINCT "_mb_row_id") AS "total_matches"
 FROM
     "PUBLIC"."brazil_matches";
     
 
--- KPI: Total Wins
+
 SELECT
     "result",
     COUNT(*) AS "total_wins"
@@ -63,3 +63,16 @@ WHERE
     "result" = 'W'
 GROUP BY
     "result";
+
+2. Match Outcome Breakdown (Pie / Donut Chart)
+Calculates the proportional split between Wins, Draws, and Losses.
+
+SELECT
+    "result",
+    COUNT(*) AS "count"
+FROM
+    "PUBLIC"."brazil_matches"
+GROUP BY
+    "result"
+ORDER BY
+    "result" ASC;
