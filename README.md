@@ -1,3 +1,4 @@
+🇧🇷 *[Clique aqui para ler a versão em Português](#-análise-da-seleção-brasileira-de-futebol-1914--2026)*
 # Brazil-National-Team-Analytics
 
 An interactive Business Intelligence dashboard analyzing the historical performance of the Brazil Men's National Football Team (Seleção Brasileira) across more than a century of international matches. Built using Metabase and SQL, this project translates raw match data into actionable insights regarding win rates, high-scoring fixtures, competition performance, and top rivalries.
@@ -156,3 +157,50 @@ LIMIT 10;
 
 # 🎛️ Dynamic Dashboard Filtering
 The dashboard features interactive field filters in Metabase. Selecting a specific competition (e.g., Tournament: FIFA World Cup) instantly re-aggregates all KPI cards, chart values, and high-scoring fixture details across the entire view without requiring hardcoded variable changes.
+
+--------------------
+## 🇧🇷 Análise da Seleção Brasileira de Futebol
+
+Um dashboard interativo de Business Intelligence que analisa o desempenho histórico da Seleção Brasileira de Futebol Masculino ao longo de mais de um século de partidas internacionais. Desenvolvido com Metabase e SQL, este projeto transforma dados brutos de partidas em insights acionáveis ​​sobre taxas de vitória, jogos com muitos gols, desempenho em competições e as principais rivalidades.
+
+# 📊 Visão Geral da Dashboard
+[Dashboard da Seleção Brasileira](https://github.com/jon-fig/Brazil-National-Team-Analytics/blob/385a6bb2382e7357e87e916705da43336b521198/Brazil%20National%20Team.pdf)
+
+Principais Insights Identificados
+Eficiência Histórica: Em um total de 1.075 partidas, o Brasil mantém uma impressionante taxa de vitória de 64,1% (689 vitórias no total).
+
+Desempenho de Elite na Copa do Mundo: Ao filtrar exclusivamente as partidas da Copa do Mundo da FIFA, o desempenho do Brasil melhora ainda mais: a taxa de vitória sobe para 65,5% (173 vitórias em 264 partidas).
+[Seleção Brasileira (Filtro de Copa do Mundo)](https://github.com/jon-fig/Brazil-National-Team-Analytics/blob/7115c105ec4512bcbfe76bc1266199fdc5489311/Brazil%20National%20Team%20(World%20Cup%20Filter).pdf)
+
+Placares Extremos:
+
+Vitória com Mais Gols (Geral): 9–2 contra o Equador.
+
+Vitória com Mais Gols (Copa do Mundo): 8–0 contra a Bolívia.
+
+Derrotas com Mais Gols: 8–4 contra a Iugoslávia (Geral) e 7–1 contra a Alemanha (Copa do Mundo). 
+
+# 🛠️ Stack Tecnológica e Ferramentas Utilizadas
+Business Intelligence: Metabase
+
+Motor de Banco de Dados: SQL (dialeto H2 / MySQL)
+
+Preparação e Limpeza de Dados: LibreOffice Calc
+
+Sistema Operacional: Zorin OS (Linux)
+
+# 🧹 Pipeline de Dados e Pré-processamento
+O conjunto de dados bruto foi obtido no Kaggle: [Brazil All Football Matches 1914–2026](https://www.kaggle.com/datasets/quelvindev/brazil-all-football-matches-1914-2026). Antes de importar os dados para o Metabase, foram realizadas algumas etapas de preparação:
+
+Tratamento de Registros Incompletos:
+
+Identificação e remoção de linhas inválidas, como a partida das Eliminatórias da Copa do Mundo de setembro de 2021 entre Brasil e Argentina, suspensa pela ANVISA devido aos protocolos sanitários da COVID-19. Como os campos de placar e resultado estavam vazios, a linha inteira foi descartada para preservar a integridade das agregações globais.
+
+Padronização:
+
+Alinhamento dos tipos de dados de texto (string) para placares e resultados das partidas (W, D, L).
+
+Correção de inconsistências de formatação nos nomes das competições para viabilizar agregações limpas via `GROUP BY`.
+
+# 💻 Principais Queries SQL Utilizadas
+Abaixo estão as principais consultas SQL que alimentam os componentes do dashboard no Metabase.
