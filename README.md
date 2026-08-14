@@ -18,3 +18,25 @@ Highest Scoring Win (Overall): 9–2 vs. Ecuador.
 Highest Scoring Win (World Cup): 8–0 vs. Bolivia.
 
 Highest Scoring Losses: 8–4 vs. Yugoslavia (Overall) and 7–1 vs. Germany (World Cup).
+
+# 🛠️ Tech Stack & Tools Used
+Business Intelligence: Metabase
+
+Database Engine: SQL (H2 / MySQL dialect)
+
+Data Preparation & Cleaning: LibreOffice Calc
+
+Environment: Zorin OS (Linux)
+
+# 🧹 Data Pipeline & Preprocessing
+The raw dataset was downloaded from Kaggle [Brazil All Football Matches 1914–2026](https://www.kaggle.com/datasets/quelvindev/brazil-all-football-matches-1914-2026). Before importing the data into Metabase, some data preparation steps were completed:
+
+Handling Incomplete Records:
+
+Identified and removed invalid rows, such as the September 2021 World Cup Qualifier between Brazil and Argentina, which was suspended by ANVISA due to COVID-19 health protocols. Since the score and result fields were left empty, the entire row was pruned to preserve overall aggregation integrity.
+
+Standardization:
+
+Aligned string data types for scores and match outcomes (W, D, L).
+
+Cleaned formatting discrepancies across competition labels to enable clean GROUP BY aggregations.
