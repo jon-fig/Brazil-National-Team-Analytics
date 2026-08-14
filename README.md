@@ -40,3 +40,26 @@ Standardization:
 Aligned string data types for scores and match outcomes (W, D, L).
 
 Cleaned formatting discrepancies across competition labels to enable clean GROUP BY aggregations.
+
+# 💻 Key SQL Queries Used
+Below are the primary SQL queries powering the dashboard components in Metabase.
+
+1. Headline KPIs (Total Matches & Total Wins)
+
+-- KPI: Total Matches Played
+SELECT
+    COUNT(DISTINCT "_mb_row_id") AS "total_matches"
+FROM
+    "PUBLIC"."brazil_matches";
+    
+
+-- KPI: Total Wins
+SELECT
+    "result",
+    COUNT(*) AS "total_wins"
+FROM
+    "PUBLIC"."brazil_matches"
+WHERE
+    "result" = 'W'
+GROUP BY
+    "result";
