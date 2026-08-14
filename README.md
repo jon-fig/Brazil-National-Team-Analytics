@@ -3,7 +3,7 @@
 An interactive Business Intelligence dashboard analyzing the historical performance of the Brazil Men's National Football Team (Seleção Brasileira) across more than a century of international matches. Built using Metabase and SQL, this project translates raw match data into actionable insights regarding win rates, high-scoring fixtures, competition performance, and top rivalries.
 
 📊 Dashboard Overview
-![Brazil National Team Dashboard](https://github.com/jon-fig/Brazil-National-Team-Analytics/blob/385a6bb2382e7357e87e916705da43336b521198/Brazil%20National%20Team.pdf))
+[Brazil National Team Dashboard](https://github.com/jon-fig/Brazil-National-Team-Analytics/blob/385a6bb2382e7357e87e916705da43336b521198/Brazil%20National%20Team.pdf))
 
 Key Insights Discovered
 Historical Efficiency: Across 1,075 total matches, Brazil holds an impressive 64.1% win rate (689 total wins).
