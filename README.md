@@ -46,14 +46,14 @@ Below are the primary SQL queries powering the dashboard components in Metabase.
 
 1. Headline KPIs (Total Matches & Total Wins)
 
-
+--Total Matches Played
 SELECT
     COUNT(DISTINCT "_mb_row_id") AS "total_matches"
 FROM
     "PUBLIC"."brazil_matches";
     
 
-
+-- Total Wins
 SELECT
     "result",
     COUNT(*) AS "total_wins"
@@ -76,3 +76,83 @@ GROUP BY
     "result"
 ORDER BY
     "result" ASC;
+
+
+3. Dynamic High-Scoring Matches (Wins & Losses)
+Uses windowed count aggregations and max score ordering to determine the highest-scoring victories and defeats.
+
+-- Highest Scoring Win Card
+SELECT
+    "match",
+    MAX("score") AS "max_score"
+FROM (
+    SELECT
+        "score",
+        "match"
+    FROM
+        "PUBLIC"."brazil_matches"
+    WHERE
+        "result" = 'W'
+) AS filtered_wins
+GROUP BY
+    "match"
+ORDER BY
+    "max_score" DESC,
+    "match" ASC
+LIMIT 1;
+
+--- KPI Highest Scoring Loss
+SELECT
+    "match",
+    MAX("score") AS "max_score"
+FROM (
+    SELECT
+        "score",
+        "match"
+    FROM
+        "PUBLIC"."brazil_matches"
+    WHERE
+        "result" = 'L'
+) AS filtered_losses
+GROUP BY
+    "match"
+ORDER BY
+    "max_score" DESC,
+    "match" ASC
+LIMIT 1;
+
+
+4. Performance by Competition Type (Bar Chart)
+Aggregates match volume across major tournaments, filtered to display major competitive categories.
+
+SELECT
+    "competition",
+    COUNT(DISTINCT "_mb_row_id") AS "match_count"
+FROM
+    "PUBLIC"."brazil_matches"
+GROUP BY
+    "competition"
+HAVING
+    COUNT(DISTINCT "_mb_row_id") > 40
+ORDER BY
+    "competition" ASC;
+
+
+5. Top 10 Most Frequent Fixtures
+Identifies the opponent national teams Brazil has faced most frequently throughout history.
+
+SELECT
+    "match",
+    COUNT(DISTINCT "_mb_row_id") AS "times_played"
+FROM
+    "PUBLIC"."brazil_matches"
+GROUP BY
+    "match"
+ORDER BY
+    "times_played" DESC,
+    "match" ASC
+LIMIT 10;
+
+
+# 🎛️ Dynamic Dashboard Filtering
+The dashboard features interactive field filters in Metabase. Selecting a specific competition (e.g., Tournament: FIFA World Cup) instantly re-aggregates all KPI cards, chart values, and high-scoring fixture details across the entire view without requiring hardcoded variable changes.
