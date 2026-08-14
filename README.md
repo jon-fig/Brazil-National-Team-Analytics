@@ -9,6 +9,7 @@ Key Insights Discovered
 Historical Efficiency: Across 1,075 total matches, Brazil holds an impressive 64.1% win rate (689 total wins).
 
 World Cup Elite Performance: When filtering exclusively for FIFA World Cup matches, Brazil's performance improves even further: the win rate jumps to 65.5% (173 wins out of 264 matches).
+[Brazil National Team (World Cup Filter)](https://github.com/jon-fig/Brazil-National-Team-Analytics/blob/7115c105ec4512bcbfe76bc1266199fdc5489311/Brazil%20National%20Team%20(World%20Cup%20Filter).pdf)
 
 Extreme Scores:
 
