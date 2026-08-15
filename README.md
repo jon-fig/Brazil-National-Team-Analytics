@@ -1,4 +1,4 @@
-🇧🇷 *[Clique aqui para ler a versão em Português](#-análise-da-seleção-brasileira-de-futebol-1914--2026)*
+🇧🇷 *[Clique aqui para ler a versão em Português](#-análise-da-seleção-brasileira-de-futebol)*
 # Brazil-National-Team-Analytics
 
 An interactive Business Intelligence dashboard analyzing the historical performance of the Brazil Men's National Football Team (Seleção Brasileira) across more than a century of international matches. Built using Metabase and SQL, this project translates raw match data into actionable insights regarding win rates, high-scoring fixtures, competition performance, and top rivalries.
@@ -158,7 +158,8 @@ LIMIT 10;
 # 🎛️ Dynamic Dashboard Filtering
 The dashboard features interactive field filters in Metabase. Selecting a specific competition (e.g., Tournament: FIFA World Cup) instantly re-aggregates all KPI cards, chart values, and high-scoring fixture details across the entire view without requiring hardcoded variable changes.
 
---------------------
+-------------------------
+
 ## 🇧🇷 Análise da Seleção Brasileira de Futebol
 
 Um dashboard interativo de Business Intelligence que analisa o desempenho histórico da Seleção Brasileira de Futebol Masculino ao longo de mais de um século de partidas internacionais. Desenvolvido com Metabase e SQL, este projeto transforma dados brutos de partidas em insights acionáveis ​​sobre taxas de vitória, jogos com muitos gols, desempenho em competições e as principais rivalidades.
