@@ -184,7 +184,7 @@ Derrotas com Mais Gols: 8–4 contra a Iugoslávia (Geral) e 7–1 contra a Alem
 # 🛠️ Stack Tecnológica e Ferramentas Utilizadas
 Business Intelligence: Metabase
 
-Motor de Banco de Dados: SQL (dialeto H2 / MySQL)
+Motor de Banco de Dados: SQL (H2 / MySQL)
 
 Preparação e Limpeza de Dados: LibreOffice Calc
 
