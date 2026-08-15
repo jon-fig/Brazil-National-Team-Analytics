@@ -205,3 +205,116 @@ Correção de inconsistências de formatação nos nomes das competições para 
 
 # 💻 Principais Queries SQL Utilizadas
 Abaixo estão as principais consultas SQL que alimentam os componentes do dashboard no Metabase.
+
+1. KPIs Principais (Total de Partidas e Total de Vitórias)
+
+--Total de Partidas Disputadas
+SELECT
+COUNT(DISTINCT "_mb_row_id") AS "total_matches"
+FROM
+"PUBLIC"."brazil_matches";
+
+
+-- Total de Vitórias
+SELECT
+"result",
+COUNT(*) AS "total_wins"
+FROM
+"PUBLIC"."brazil_matches"
+WHERE
+"result" = 'W'
+GROUP BY
+"result";
+
+2. Detalhamento do Resultado das Partidas (Gráfico de Pizza)
+Calcula a distribuição proporcional entre Vitórias (W), Empates (D) e Derrotas (L).
+
+SELECT
+"result",
+COUNT(*) AS "count"
+FROM
+"PUBLIC"."brazil_matches"
+GROUP BY
+"result"
+ORDER BY
+"result" ASC;
+
+
+3. Partidas Dinâmicas com Maior Pontuação (Vitórias e Derrotas)
+Utiliza agregações de contagem com funções de janela e ordenação pela pontuação máxima para identificar as vitórias e derrotas com as maiores goleadas.
+
+-- Card de Vitória com Maior Goleada
+SELECT
+"match",
+MAX("score") AS "max_score"
+FROM (
+SELECT
+"score",
+"match"
+FROM
+"PUBLIC"."brazil_matches"
+WHERE
+"result" = 'W'
+) AS filtered_wins
+GROUP BY
+"match"
+ORDER BY
+"max_score" DESC,
+"match" ASC
+LIMIT 1;
+
+--- Card de Derrota com Maior Goleada
+SELECT
+"match",
+MAX("score") AS "max_score"
+FROM (
+SELECT
+"score",
+"match"
+FROM
+"PUBLIC"."brazil_matches"
+WHERE
+"result" = 'L'
+) AS filtered_losses
+GROUP BY
+"match"
+ORDER BY
+"max_score" DESC,
+"match" ASC
+LIMIT 1;
+
+
+4. Desempenho por Tipo de Competição (Gráfico de Barras)
+Agrega o volume de partidas nos principais torneios, filtrado para exibir as categorias competitivas mais relevantes.
+
+SELECT
+"competition",
+COUNT(DISTINCT "_mb_row_id") AS "match_count"
+FROM
+"PUBLIC"."brazil_matches"
+GROUP BY
+"competition"
+HAVING
+COUNT(DISTINCT "_mb_row_id") > 40
+ORDER BY
+"competition" ASC;
+
+
+6. Top 10 Confrontos Mais Frequentes
+Identifica as seleções adversárias que o Brasil enfrentou com maior frequência ao longo da história.
+
+SELECT
+"match",
+COUNT(DISTINCT "_mb_row_id") AS "times_played"
+FROM
+"PUBLIC"."brazil_matches"
+GROUP BY
+"match"
+ORDER BY
+"times_played" DESC,
+"match" ASC
+LIMIT 10;
+
+
+# 🎛️ Filtragem Dinâmica do Painel
+O dashboard conta com filtros de campo interativos no Metabase. Ao selecionar uma competição específica (por exemplo, Torneio: Copa do Mundo da FIFA), todos os cartões de KPI, valores de gráficos e detalhes de confrontos com placares elevados são imediatamente recalculados em toda a visualização, sem a necessidade de alterar variáveis manualmente.
